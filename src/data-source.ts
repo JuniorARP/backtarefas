@@ -1,7 +1,9 @@
+
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
-import { Tasks } from './entity/Tasks';
 import { User } from './entity/User';
+import { Tasks } from './entity/Tasks';
+
 
 const PostgresAppDataSource = new DataSource({
   type: 'postgres',
@@ -18,9 +20,10 @@ const PostgresAppDataSource = new DataSource({
   ssl: true,
 });
 
+
 const SqliteAppDataSource = new DataSource({
   type: 'sqlite',
-  database: 'tarefadb.sql',
+  database: 'tarefadb_sorh.sql',
   synchronize: true,
   logging: true,
   entities: [User, Tasks],
@@ -28,4 +31,6 @@ const SqliteAppDataSource = new DataSource({
   subscribers: [],
 });
 
-export const AppDataSource = process.env.ENV === 'PROD' ? PostgresAppDataSource : SqliteAppDataSource;
+
+export const AppDataSource =
+  process.env.ENV === 'PROD' ? PostgresAppDataSource : SqliteAppDataSource;
